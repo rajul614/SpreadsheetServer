@@ -1,0 +1,44 @@
+/*
+ * Filename:Dependency.h
+ * Author:Ty-Rack-US Park
+ * Last Modified: 4/8/2015
+ * Version: 1.0
+ */
+#ifndef DEPENDENCYGRAPH_H
+#define DEPENDENCYGRAPH_H
+
+#include <map>
+#include <string>
+#include <sstream>
+#include <vector>
+
+using namespace std;
+
+/*
+ * This class represents a data structure for representing different
+ * cells in a spreadsheet and the relations of those cells towards each other. 
+ */
+class DependencyGraph {
+ public:
+  DependencyGraph(); // Default Constructor Empty Dependency Graph
+  DependencyGraph(const DependencyGraph &other); // Copy constructor
+  ~DependencyGraph();
+
+ int size() const;
+  bool HasDependents(string s);
+  bool HasDependees(string s);
+  void AddDependency(string s, string t);
+  void RemoveDependency(string s, string t);
+  void ReplaceDependents(string s, vector<string> newDependents);
+  void ReplaceDependees(string s, vector<string> newDependees);
+
+ private:
+  int PairCount;
+  map<string, vector<string> > key_to_dependents;
+  map<string, vector<string> > key_to_dependees;
+  
+}
+
+
+ #endif
+
